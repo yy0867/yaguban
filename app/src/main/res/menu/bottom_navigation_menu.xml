@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_nav_batter"
+        android:enabled="true"
+        android:icon="@drawable/batter_icon"
+        android:title="@string/batter" />
+
+    <item
+        android:id="@+id/bottom_nav_pitcher"
+        android:enabled="true"
+        android:icon="@drawable/pitcher_icon"
+        android:title="@string/pitcher" />
+
+    <item
+        android:id="@+id/bottom_nav_add_player"
+        android:enabled="true"
+        android:icon="@drawable/add_player_icon"
+        android:title="@string/add_player"/>
+
+</menu>
