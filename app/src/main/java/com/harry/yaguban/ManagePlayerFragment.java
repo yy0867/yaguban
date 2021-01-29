@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddPlayerFragment#newInstance} factory method to
+ * Use the {@link ManagePlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddPlayerFragment extends Fragment {
+public class ManagePlayerFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +25,7 @@ public class AddPlayerFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AddPlayerFragment() {
+    public ManagePlayerFragment() {
         // Required empty public constructor
     }
 
@@ -38,8 +38,8 @@ public class AddPlayerFragment extends Fragment {
      * @return A new instance of fragment AddPlayerFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddPlayerFragment newInstance(String param1, String param2) {
-        AddPlayerFragment fragment = new AddPlayerFragment();
+    public static ManagePlayerFragment newInstance(String param1, String param2) {
+        ManagePlayerFragment fragment = new ManagePlayerFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,9 +59,9 @@ public class AddPlayerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle("선수 추가");
+        actionBar.setTitle("선수 관리");
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_player, container, false);
+        return inflater.inflate(R.layout.fragment_manage_player, container, false);
     }
 }

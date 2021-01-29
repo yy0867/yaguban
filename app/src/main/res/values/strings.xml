@@ -2,7 +2,6 @@
     <string name="app_name">야구반 기록관리</string>
     <string name="batter">타자</string>
     <string name="pitcher">투수</string>
-    <string name="add_player">선수 추가</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="manage_player">선수 관리</string>
+    <string name="no_player">선수가 없습니다.\n\n선수 관리에서 선수를 추가해주세요!</string>
 </resources>

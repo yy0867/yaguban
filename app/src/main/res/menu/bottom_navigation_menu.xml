@@ -14,9 +14,9 @@
         android:title="@string/pitcher" />
 
     <item
-        android:id="@+id/bottom_nav_add_player"
+        android:id="@+id/bottom_nav_manage_player"
         android:enabled="true"
         android:icon="@drawable/add_player_icon"
-        android:title="@string/add_player"/>
+        android:title="@string/manage_player"/>
 
 </menu>

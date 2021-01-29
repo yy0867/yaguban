@@ -5,19 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+    List<Player> batterList = new ArrayList<>();
 
     Fragment batterListFragment;
     Fragment pitcherListFragment;
-    Fragment addPlayerFragment;
+    Fragment managePlayerFragment;
     BottomNavigationView navView;
 
     @Override
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //Create Object
         batterListFragment = new BatterListFragment();
         pitcherListFragment = new PitcherListFragment();
-        addPlayerFragment = new AddPlayerFragment();
+        managePlayerFragment = new ManagePlayerFragment();
         navView = findViewById(R.id.bottom_nav_view);
 
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
@@ -51,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.bottom_nav_pitcher:
                     getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, pitcherListFragment).commit();
                     return true;
-                case R.id.bottom_nav_add_player:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, addPlayerFragment).commit();
+                case R.id.bottom_nav_manage_player:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, managePlayerFragment).commit();
                     return true;
             }
 
