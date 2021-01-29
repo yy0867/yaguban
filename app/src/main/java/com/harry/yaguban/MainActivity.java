@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment batterListFragment;
     Fragment pitcherListFragment;
     Fragment managePlayerFragment;
+    Fragment matchListFragment;
     BottomNavigationView navView;
 
     @Override
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         batterListFragment = new BatterListFragment();
         pitcherListFragment = new PitcherListFragment();
         managePlayerFragment = new ManagePlayerFragment();
+        matchListFragment = new MatchListFragment();
         navView = findViewById(R.id.bottom_nav_view);
 
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
@@ -52,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.bottom_nav_pitcher:
                     getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, pitcherListFragment).commit();
+                    return true;
+                case R.id.bottom_nav_match_list:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, matchListFragment).commit();
                     return true;
                 case R.id.bottom_nav_manage_player:
                     getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, managePlayerFragment).commit();

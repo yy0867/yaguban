@@ -62,8 +62,8 @@ public class BatterListFragment extends Fragment {
         actionBar.setTitle("타자");
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_batter_list, container, false);;
+        //return inflater.inflate(R.layout.fragment_batter_list, container, false);
         // If No Player Exist, run code under
-        // return inflater.inflate(R.layout.no_player_layout, container, false);
+        return inflater.inflate(R.layout.no_player_layout, container, false);
     }
 }
