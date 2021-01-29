@@ -14,6 +14,12 @@
         android:title="@string/pitcher" />
 
     <item
+        android:id="@+id/bottom_nav_match_list"
+        android:enabled="true"
+        android:icon="@drawable/match_list_icon"
+        android:title="@string/match_list"/>
+
+    <item
         android:id="@+id/bottom_nav_manage_player"
         android:enabled="true"
         android:icon="@drawable/add_player_icon"

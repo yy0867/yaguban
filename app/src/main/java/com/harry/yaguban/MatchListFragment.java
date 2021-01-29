@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link PitcherListFragment#newInstance} factory method to
+ * Use the {@link MatchListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PitcherListFragment extends Fragment {
+public class MatchListFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +25,7 @@ public class PitcherListFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public PitcherListFragment() {
+    public MatchListFragment() {
         // Required empty public constructor
     }
 
@@ -35,11 +35,11 @@ public class PitcherListFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PitcherListFragment.
+     * @return A new instance of fragment MatchListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PitcherListFragment newInstance(String param1, String param2) {
-        PitcherListFragment fragment = new PitcherListFragment();
+    public static MatchListFragment newInstance(String param1, String param2) {
+        MatchListFragment fragment = new MatchListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,12 +58,11 @@ public class PitcherListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle("투수");
-
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_pitcher_list, container, false);
-        // If No Player Exist, run code under
-        return inflater.inflate(R.layout.no_player_layout, container, false);
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle("경기 기록");
+        // return inflater.inflate(R.layout.fragment_match_list, container, false);
+        // If no match exist, run code below
+        return inflater.inflate(R.layout.no_match_list_layout, container, false);
     }
 }
