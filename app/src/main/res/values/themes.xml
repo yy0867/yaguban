@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.야구반기록관리" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- App Font -->
-        <item name="android:textViewStyle">@style/standard_font_style_light</item>
+        <item name="android:fontFamily">@font/bccardlight</item>
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/main_color</item>

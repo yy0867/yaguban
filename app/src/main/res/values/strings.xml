@@ -6,4 +6,15 @@
     <string name="manage_player">선수 관리</string>
     <string name="no_player">선수가 없습니다.\n\n선수 관리에서 선수를 추가해주세요!</string>
     <string name="no_match">경기가 없습니다.\n\n경기를 추가해주세요!</string>
+
+    <!-- Manage List Strings -->
+    <string name="name_title">이름</string>
+    <string name="backnumber_title">등번호</string>
+    <string name="position_title">포지션</string>
+    <string name="add_player">선수 추가</string>
+
+    <!-- Add Player Popup Strings -->
+    <string name="player_name_hint">이름을 입력해주세요</string>
+    <string name="add_player_button">경기 출전</string>
+
 </resources>

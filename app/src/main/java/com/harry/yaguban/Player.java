@@ -7,6 +7,11 @@ public class Player {
         this.position = position;
     }
 
+    //Setter
+    public void setName(String name) { this.name = name; }
+    public void setBackNumber(int backNumber) { this.backNumber = backNumber; }
+    public void setPosition(Position position) { this.position = position; }
+
     //Getter
     public String getName() { return name; }
     public int getBackNumber() { return backNumber; }
