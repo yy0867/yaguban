@@ -70,7 +70,6 @@ public class ManagePlayerFragment extends Fragment {
         //add player button listener
         buttonAddPlayer.setOnClickListener(v -> {
             //show popup
-            activity.changeFragment(FragmentList.ADDPLAYER);
         });
 
         // Inflate the layout for this fragment

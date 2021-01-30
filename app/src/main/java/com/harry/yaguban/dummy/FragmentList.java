@@ -1,5 +1,5 @@
 package com.harry.yaguban.dummy;
 
 public enum FragmentList {
-    BATTERLIST, PITCHERLIST, MANAGEPLAYER, MATCHLIST, ADDPLAYER;
+    BATTERLIST, PITCHERLIST, MANAGEPLAYER, MATCHLIST;
 }

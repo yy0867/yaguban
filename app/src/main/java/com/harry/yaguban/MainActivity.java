@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     Fragment pitcherListFragment;
     Fragment managePlayerFragment;
     Fragment matchListFragment;
-    Fragment addPlayerPopupFragment;
     BottomNavigationView navView;
 
     Bundle dataBundle;
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         pitcherListFragment = new PitcherListFragment();
         managePlayerFragment = new ManagePlayerFragment();
         matchListFragment = new MatchListFragment();
-        addPlayerPopupFragment = new AddPlayerPopup();
     }
 
     @Override
@@ -94,9 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case MANAGEPLAYER:
                 getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, managePlayerFragment).commit();
-                break;
-            case ADDPLAYER:
-                getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, addPlayerPopupFragment).commit();
                 break;
         }
     }
