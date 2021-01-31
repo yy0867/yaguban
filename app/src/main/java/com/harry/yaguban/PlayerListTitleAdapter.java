@@ -1,5 +1,6 @@
 package com.harry.yaguban;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,11 +32,14 @@ public class PlayerListTitleAdapter extends RecyclerView.Adapter<PlayerListTitle
 
         public void setItem() {
             nameTitle.setText("이름");
-            nameTitle.setTextSize(14);
+            nameTitle.setTextSize(16);
+            nameTitle.setTextColor(Color.BLACK);
             backNumberTitle.setText("등번호");
-            backNumberTitle.setTextSize(14);
+            backNumberTitle.setTextSize(16);
+            backNumberTitle.setTextColor(Color.BLACK);
             positionTitle.setText("주 포지션");
-            positionTitle.setTextSize(14);
+            positionTitle.setTextSize(16);
+            positionTitle.setTextColor(Color.BLACK);
             checkBox.setVisibility(View.GONE);
         }
     }

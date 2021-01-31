@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/bottom_nav_current_match"
+        android:enabled="true"
+        android:icon="@drawable/scoreboard_icon"
+        android:title="@string/current_match"/>
+
+    <item
         android:id="@+id/bottom_nav_batter"
         android:enabled="true"
         android:icon="@drawable/batter_icon"

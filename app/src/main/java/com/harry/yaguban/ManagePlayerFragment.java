@@ -1,7 +1,9 @@
 package com.harry.yaguban;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
@@ -33,6 +35,7 @@ public class ManagePlayerFragment extends Fragment {
     RecyclerView recyclerViewPlayerTitle;
     boolean isRemoveState = false;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         isRemoveState = false;
@@ -83,6 +86,8 @@ public class ManagePlayerFragment extends Fragment {
                 isRemoveState = false;
                 buttonAddPlayer.setVisibility(View.VISIBLE);
                 changeOrigin();
+                ourTeam = playerAdapter.removePlayer();
+                TeamFileManager.saveTeam(Objects.requireNonNull(getContext()), ourTeam);
             }
             playerAdapter.notifyDataSetChanged();
         });
@@ -102,35 +107,16 @@ public class ManagePlayerFragment extends Fragment {
     }
 
     private void changeGuideLine(float name, float backNumber, float position, int visibility) {
-        Guideline lineName = recyclerViewPlayerList.findViewById(R.id.guideline_name);
-        Guideline lineBackNumber = recyclerViewPlayerList.findViewById(R.id.guideline_backnumber);
-        Guideline linePosition = recyclerViewPlayerList.findViewById(R.id.guideline_position);
-
         recyclerViewPlayerTitle.setVisibility(visibility);
         playerAdapter.setCheckboxVisibility(visibility == View.GONE ? View.VISIBLE : View.GONE);
-
-        //guideline for name
-        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) lineName.getLayoutParams();
-        params.guidePercent = name;
-        lineName.setLayoutParams(params);
-
-        //guideline for back number
-        params = (ConstraintLayout.LayoutParams) lineBackNumber.getLayoutParams();
-        params.guidePercent = backNumber;
-        lineBackNumber.setLayoutParams(params);
-
-        //guideline for position
-        params = (ConstraintLayout.LayoutParams) linePosition.getLayoutParams();
-        params.guidePercent = position;
-        linePosition.setLayoutParams(params);
+        playerAdapter.setGuideLine(visibility == View.GONE);
     }
 
     private void showListToView() {
-        if (ourTeam != null) {
-            playerAdapter.init();
-            for (Player p : ourTeam.getPlayerList()) {
-                playerAdapter.addPlayer(p);
-            }
+        ourTeam = TeamFileManager.loadTeam(Objects.requireNonNull(getContext()));
+        playerAdapter.init();
+        for (Player p : ourTeam.getPlayerList()) {
+            playerAdapter.addPlayer(p);
         }
     }
 }

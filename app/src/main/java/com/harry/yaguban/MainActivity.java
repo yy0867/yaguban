@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    Fragment currentMatchFragment;
     Fragment batterListFragment;
     Fragment pitcherListFragment;
     Fragment managePlayerFragment;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     Team ourTeam = new Team();
 
     private void initFragment() {
+        currentMatchFragment = new CurrentMatchFragment();
         batterListFragment = new BatterListFragment();
         pitcherListFragment = new PitcherListFragment();
         managePlayerFragment = new ManagePlayerFragment();
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
 
         //Fragment Manager
-        getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, batterListFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, currentMatchFragment).commit();
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
@@ -68,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch(item.getItemId()) {
+                case R.id.bottom_nav_current_match:
+                    changeFragment(FragmentList.CURRENTMATCH);
+                    return true;
                 case R.id.bottom_nav_batter:
                     changeFragment(FragmentList.BATTERLIST);
                     return true;
@@ -88,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeFragment(FragmentList list) {
         switch(list) {
+            case CURRENTMATCH:
+                getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, currentMatchFragment).commit();
+                break;
             case BATTERLIST:
                 getSupportFragmentManager().beginTransaction().replace(R.id.layout_fragment_container, batterListFragment).commit();
                 break;
@@ -105,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void refreshFragment(FragmentList list) {
         switch(list) {
+            case CURRENTMATCH:
+                getSupportFragmentManager().beginTransaction()
+                        .detach(currentMatchFragment)
+                        .attach(currentMatchFragment)
+                        .commit();
+                break;
             case BATTERLIST:
                 getSupportFragmentManager().beginTransaction()
                     .detach(batterListFragment)
@@ -151,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 Position playerPosition = (Position) data.getSerializableExtra("playerPosition");
                 int playerBackNumber = data.getIntExtra("playerBackNumber", 1);
 
+                loadTeam();
                 ourTeam.addPlayer(new Player(playerName, playerBackNumber, playerPosition));
                 TeamFileManager.saveTeam(this, ourTeam);
 

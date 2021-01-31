@@ -24,16 +24,12 @@ public class BatterListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ActionBar actionBar = ((MainActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
         actionBar.setTitle("타자");
+        View view = inflater.inflate(R.layout.fragment_batter_list, container, false);
 
         ourTeam = TeamFileManager.loadTeam(getActivity());
-
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_batter_list, container, false);
-        // If No Player Exist, run code under
-        if (ourTeam.getPlayerList().isEmpty()) {
+        if (ourTeam.getPlayerList().isEmpty())
             return inflater.inflate(R.layout.no_player_layout, container, false);
-        } else {
-            return inflater.inflate(R.layout.fragment_batter_list, container, false);
-        }
+
+        return view;
     }
 }

@@ -4,7 +4,7 @@
     <string name="pitcher">투수</string>
     <string name="match_list">경기 기록</string>
     <string name="manage_player">선수 관리</string>
-    <string name="no_player">선수가 없습니다.\n\n선수 관리에서 선수를 추가해주세요!</string>
+    <string name="no_player">선수 혹은 경기가 없습니다.\n\n각 탭에서 추가해주세요!</string>
     <string name="no_match">경기가 없습니다.\n\n경기를 추가해주세요!</string>
     <string name="backnumber_range">1 ~ 99</string>
 
@@ -15,7 +15,13 @@
     <string name="add_player">선수 추가</string>
     <string name="remove_player">선수 삭제</string>
 
+    <!-- Match Strings -->
+    <string name="current_match">현재 경기</string>
+    <string name="add_match">경기 추가</string>
+
     <!-- Add Player Popup Strings -->
     <string name="player_name_hint">이름을 입력해주세요</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -16,7 +16,11 @@ public class Player {
     public String getName() { return name; }
     public int getBackNumber() { return backNumber; }
     public Position getPosition() { return position; }
-    public String getSaveString() { return name + " " + backNumber + " " + position; }
+
+    public boolean isSelected() { return isSelected; }
+    public void setSelected(boolean selected) { isSelected = selected; }
+
+    private boolean isSelected;
 
     private String name;
     private int backNumber;
