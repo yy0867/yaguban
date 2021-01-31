@@ -1,6 +1,8 @@
 package com.harry.yaguban;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -10,26 +12,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.harry.yaguban.dummy.FragmentList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    List<Player> batterList = new ArrayList<>();
-
     Fragment batterListFragment;
     Fragment pitcherListFragment;
     Fragment managePlayerFragment;
     Fragment matchListFragment;
     BottomNavigationView navView;
-
-    Bundle dataBundle;
+    Team ourTeam = new Team();
 
     private void initFragment() {
         batterListFragment = new BatterListFragment();
@@ -47,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Create Object
         initFragment();
+        loadTeam();
+
         navView = findViewById(R.id.bottom_nav_view);
 
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
@@ -96,7 +103,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void saveFragmentData(Bundle bundle) {
-        this.dataBundle = bundle;
+    public void launchAddPlayerPopup() {
+        Intent intent = new Intent(this, AddPlayerPopupActivity.class);
+        startActivityForResult(intent, 1);
+    }
+
+    private void loadTeam() {
+        ourTeam = TeamFileManager.loadTeam(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK && data != null) {
+                String playerName = data.getStringExtra("playerName");
+                Position playerPosition = (Position) data.getSerializableExtra("playerPosition");
+                int playerBackNumber = data.getIntExtra("playerBackNumber", 1);
+
+                ourTeam.addPlayer(new Player(playerName, playerBackNumber, playerPosition));
+                TeamFileManager.saveTeam(this, ourTeam);
+
+                getSupportFragmentManager().beginTransaction()
+                        .detach(managePlayerFragment)
+                        .attach(managePlayerFragment)
+                        .commit();
+            }
+        }
     }
 }

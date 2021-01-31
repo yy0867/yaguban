@@ -16,6 +16,7 @@ public class Player {
     public String getName() { return name; }
     public int getBackNumber() { return backNumber; }
     public Position getPosition() { return position; }
+    public String getSaveString() { return name + " " + backNumber + " " + position; }
 
     private String name;
     private int backNumber;

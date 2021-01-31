@@ -1,9 +1,11 @@
 package com.harry.yaguban;
 
-import android.content.Intent;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -14,30 +16,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.harry.yaguban.dummy.FragmentList;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class ManagePlayerFragment extends Fragment {
 
-    private ArrayList<Player> playerList;
-
+    Team ourTeam = new Team();
     MainActivity activity;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    PlayerAdapter playerAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         activity = (MainActivity) getActivity();
+        ourTeam = TeamFileManager.loadTeam(Objects.requireNonNull(getActivity()));
 
         ActionBar actionBar = ((MainActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
         assert actionBar != null;
@@ -60,19 +53,28 @@ public class ManagePlayerFragment extends Fragment {
         PlayerListTitleAdapter titleAdapter = new PlayerListTitleAdapter();
         recyclerViewPlayerTitle.setAdapter(titleAdapter);
 
-        PlayerAdapter playerAdapter = new PlayerAdapter();
+        playerAdapter = new PlayerAdapter();
         recyclerViewPlayerList.setAdapter(playerAdapter);
         recyclerViewPlayerList.setItemAnimator(new DefaultItemAnimator());
         buttonAddPlayer = view.findViewById(R.id.buttonAddPlayer);
 
-        playerAdapter.addPlayer(new Player("김세영", 12, Position.FIRST));
-
         //add player button listener
         buttonAddPlayer.setOnClickListener(v -> {
             //show popup
+            activity.launchAddPlayerPopup();
         });
+
+        showListToView();
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    private void showListToView() {
+        if (ourTeam != null) {
+            for (Player p : ourTeam.getPlayerList()) {
+                playerAdapter.addPlayer(p);
+            }
+        }
     }
 }

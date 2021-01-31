@@ -2,8 +2,130 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:orientation="vertical"
     tools:context=".AddPlayerPopupActivity">
+
+    <TextView
+        android:id="@+id/add_player_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color"
+        android:fontFamily="@font/bccardlight"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/add_player"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/bccardlight"
+        android:text="@string/name_title"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/add_player_title" />
+
+    <EditText
+        android:id="@+id/edit_text_player_name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:fontFamily="@font/bccardlight"
+        android:hint="@string/player_name_hint"
+        android:inputType="textPersonName"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_name"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/text_name" />
+
+    <TextView
+        android:id="@+id/text_backNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/bccardlight"
+        android:text="@string/backnumber_title"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/text_name" />
+
+
+    <TextView
+        android:id="@+id/text_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/bccardlight"
+        android:text="@string/position_title"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/text_backNumber" />
+
+    <Spinner
+        android:id="@+id/spinner_select_position"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bccardlight"
+        android:spinnerMode="dialog"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_position"
+        app:layout_constraintEnd_toEndOf="@+id/edit_text_player_backnumber"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/text_position" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <Button
+        android:id="@+id/button_add_player_complete"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="35dp"
+        android:background="@color/gray"
+        android:fontFamily="@font/bccardlight"
+        android:onClick="addPlayerButtonClicked"
+        android:text="@string/player_name_hint"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_select_position"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/edit_text_player_backnumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/backnumber_range"
+        android:inputType="numberSigned"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_backNumber"
+        app:layout_constraintEnd_toEndOf="@+id/edit_text_player_name"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/text_backNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
