@@ -13,9 +13,9 @@
     <string name="backnumber_title">등번호</string>
     <string name="position_title">포지션</string>
     <string name="add_player">선수 추가</string>
+    <string name="remove_player">선수 삭제</string>
 
     <!-- Add Player Popup Strings -->
     <string name="player_name_hint">이름을 입력해주세요</string>
-    <string name="add_player_button">경기 출전</string>
 
 </resources>

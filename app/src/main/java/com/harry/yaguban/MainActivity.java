@@ -103,6 +103,35 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void refreshFragment(FragmentList list) {
+        switch(list) {
+            case BATTERLIST:
+                getSupportFragmentManager().beginTransaction()
+                    .detach(batterListFragment)
+                    .attach(batterListFragment)
+                    .commit();
+                break;
+            case PITCHERLIST:
+                getSupportFragmentManager().beginTransaction()
+                        .detach(pitcherListFragment)
+                        .attach(pitcherListFragment)
+                        .commit();
+                break;
+            case MATCHLIST:
+                getSupportFragmentManager().beginTransaction()
+                        .detach(matchListFragment)
+                        .attach(matchListFragment)
+                        .commit();
+                break;
+            case MANAGEPLAYER:
+                getSupportFragmentManager().beginTransaction()
+                        .detach(managePlayerFragment)
+                        .attach(managePlayerFragment)
+                        .commit();
+                break;
+        }
+    }
+
     public void launchAddPlayerPopup() {
         Intent intent = new Intent(this, AddPlayerPopupActivity.class);
         startActivityForResult(intent, 1);
@@ -125,10 +154,7 @@ public class MainActivity extends AppCompatActivity {
                 ourTeam.addPlayer(new Player(playerName, playerBackNumber, playerPosition));
                 TeamFileManager.saveTeam(this, ourTeam);
 
-                getSupportFragmentManager().beginTransaction()
-                        .detach(managePlayerFragment)
-                        .attach(managePlayerFragment)
-                        .commit();
+                refreshFragment(FragmentList.MANAGEPLAYER);
             }
         }
     }
