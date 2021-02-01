@@ -4,7 +4,6 @@ import android.content.Context;
 
 public class Match {
     public Match(Context context) {
-        team = TeamFileManager.loadTeam(context);
         ourScore = opScore = 0;
         opName = "";
         matchOngoing = false;
@@ -23,15 +22,19 @@ public class Match {
     }
 
     public void setOpName(String opName) { this.opName = opName; }
+    public void setLocation(String location) { this.location = location; }
+    public void setDate(String date) { this.date = date; }
     public void startMatch() { matchOngoing = true; }
     public void endMatch() { matchOngoing = false; }
 
     public String getOpName() { return opName; }
+    public String getLocation() { return location; }
     public int getOurScore() { return ourScore; }
     public int getOpScore() { return opScore; }
 
     boolean matchOngoing;
     int ourScore, opScore;
+    String location;
     String opName;
-    Team team;
+    String date;
 }

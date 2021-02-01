@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment matchListFragment;
     BottomNavigationView navView;
     Team ourTeam = new Team();
+    Match curMatch = new Match(this);
 
     private void initFragment() {
         currentMatchFragment = new CurrentMatchFragment();
@@ -151,6 +152,11 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void launchAddMatchPopup() {
+        Intent intent = new Intent(this, AddMatchPopupActivity.class);
+        startActivityForResult(intent, 2);
+    }
+
     private void loadTeam() {
         ourTeam = TeamFileManager.loadTeam(this);
     }
@@ -160,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1) {
+            //Add Player
             if (resultCode == RESULT_OK && data != null) {
                 String playerName = data.getStringExtra("playerName");
                 Position playerPosition = (Position) data.getSerializableExtra("playerPosition");
@@ -170,6 +177,25 @@ public class MainActivity extends AppCompatActivity {
                 TeamFileManager.saveTeam(this, ourTeam);
 
                 refreshFragment(FragmentList.MANAGEPLAYER);
+            }
+        }
+        else if (requestCode == 2) {
+            //Add Match
+            if (resultCode == RESULT_OK && data != null) {
+                String opName = data.getStringExtra("name");
+                String location = data.getStringExtra("location");
+                String date = data.getStringExtra("date");
+
+                curMatch = new Match(this);
+                curMatch.startMatch();
+                curMatch.setLocation(location);
+                curMatch.setOpName(opName);
+                curMatch.setDate(date);
+
+                MatchFileManager.saveMatch(this, curMatch);
+                //ourTeam.getMatchHistory().add(curMatch);
+
+                refreshFragment(FragmentList.CURRENTMATCH);
             }
         }
     }

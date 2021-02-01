@@ -18,10 +18,17 @@
     <!-- Match Strings -->
     <string name="current_match">현재 경기</string>
     <string name="add_match">경기 추가</string>
+    <string name="op_team_name">상대 팀</string>
+    <string name="match_date">경기 일시</string>
+    <string name="match_locate">경기 장소</string>
+    <string name="end_match">경기 종료</string>
+    <string name="add_match_complete">경기를 추가합니다!</string>
+    <string name="team_name_hint">팀 이름을 입력해주세요</string>
+    <string name="match_locate_hint">구장을 입력해주세요</string>
+    <string name="match_date_hint">날짜를 선택해주세요</string>
+    <string name="kwangwoon">광운대학교</string>
 
     <!-- Add Player Popup Strings -->
     <string name="player_name_hint">이름을 입력해주세요</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

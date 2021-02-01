@@ -99,14 +99,12 @@ public class ManagePlayerFragment extends Fragment {
     }
 
     private void changeDelete() {
-        changeGuideLine(0.2f, 0.5f, 0.7f, View.GONE);
+        changeGuideLine( View.GONE);
     }
 
-    private void changeOrigin() {
-        changeGuideLine(0.1f, 0.4f, 0.65f, View.VISIBLE);
-    }
+    private void changeOrigin() { changeGuideLine(View.VISIBLE); }
 
-    private void changeGuideLine(float name, float backNumber, float position, int visibility) {
+    private void changeGuideLine(int visibility) {
         recyclerViewPlayerTitle.setVisibility(visibility);
         playerAdapter.setCheckboxVisibility(visibility == View.GONE ? View.VISIBLE : View.GONE);
         playerAdapter.setGuideLine(visibility == View.GONE);
