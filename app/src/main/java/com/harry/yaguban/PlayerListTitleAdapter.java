@@ -24,6 +24,7 @@ public class PlayerListTitleAdapter extends RecyclerView.Adapter<PlayerListTitle
         public ViewHolder(View itemView) {
             super(itemView);
 
+            itemView.setBackgroundColor(itemView.getResources().getColor(R.color.background_color));
             nameTitle = itemView.findViewById(R.id.recycler_player_name);
             backNumberTitle = itemView.findViewById(R.id.recycler_player_backnumber);
             positionTitle = itemView.findViewById(R.id.recycler_player_position);

@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         else if (requestCode == 2) {
             //Add Match
             if (resultCode == RESULT_OK && data != null) {
-                String opName = data.getStringExtra("name");
+                String opName = data.getStringExtra("team");
                 String location = data.getStringExtra("location");
                 String date = data.getStringExtra("date");
 

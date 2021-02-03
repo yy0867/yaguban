@@ -9,6 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_color">#9F3F3F</color>
     <color name="status_color">#702828</color>
-    <color name="background_color">#FFEBEE</color>
+    <color name="background_color">#CCCCCC</color>
     <color name="gray">#AAAAAA</color>
+    <color name="win">#448AFF</color>
+    <color name="lose">#FF5252</color>
+    <color name="draw">#FFB74D</color>
 </resources>

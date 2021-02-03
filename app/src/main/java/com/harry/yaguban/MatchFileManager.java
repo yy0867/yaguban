@@ -6,7 +6,8 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 
 public class MatchFileManager {
-    private static final String matchRepository = "match_repository";
+    //private static final String matchRepository = "match_repository";
+    private static final String matchRepository = "match_repository_test";
 
     public static void saveMatch(Context context, Match match) {
         Gson gson = new Gson();
@@ -26,5 +27,12 @@ public class MatchFileManager {
         String json = pref.getString("match", "");
 
         return gson.fromJson(json, Match.class);
+    }
+
+    public static void deleteMatch(Context context) {
+        SharedPreferences pref = context.getSharedPreferences(matchRepository, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+
+        editor.remove("match").apply();
     }
 }

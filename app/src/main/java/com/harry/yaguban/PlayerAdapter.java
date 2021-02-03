@@ -1,6 +1,7 @@
 package com.harry.yaguban;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder> {
-    //ArrayList<Player> playerList = new ArrayList<>();
     Team team = new Team();
     int visibility = View.GONE;
     float name = 0.1f, backNumber = 0.4f, position = 0.65f;

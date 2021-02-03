@@ -93,14 +93,16 @@ public class AddMatchPopupActivity extends Activity {
 
     public void addMatchClicked(View v) {
         addMatchButton.setOnClickListener(a -> {
-            Intent intent = new Intent();
+            if (!(team.isEmpty() || location.isEmpty() || date.isEmpty())) {
+                Intent intent = new Intent();
 
-            intent.putExtra("team", team);
-            intent.putExtra("location", location);
-            intent.putExtra("date", date);
+                intent.putExtra("team", team);
+                intent.putExtra("location", location);
+                intent.putExtra("date", date);
 
-            setResult(RESULT_OK, intent);
-            finish();
+                setResult(RESULT_OK, intent);
+                finish();
+            }
         });
     }
 

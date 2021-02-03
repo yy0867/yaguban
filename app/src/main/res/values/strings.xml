@@ -27,6 +27,9 @@
     <string name="match_locate_hint">구장을 입력해주세요</string>
     <string name="match_date_hint">날짜를 선택해주세요</string>
     <string name="kwangwoon">광운대학교</string>
+    <string name="win">win</string>
+    <string name="lose">lose</string>
+    <string name="draw">draw</string>
 
     <!-- Add Player Popup Strings -->
     <string name="player_name_hint">이름을 입력해주세요</string>

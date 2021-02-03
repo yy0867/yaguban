@@ -2,6 +2,8 @@ package com.harry.yaguban;
 
 import android.content.Context;
 
+import java.util.List;
+
 public class Match {
     public Match(Context context) {
         ourScore = opScore = 0;
@@ -26,6 +28,8 @@ public class Match {
     public void setDate(String date) { this.date = date; }
     public void startMatch() { matchOngoing = true; }
     public void endMatch() { matchOngoing = false; }
+    public void addBatter(Player p) { batterList.add(p); }
+    public void addPitcher(Player p) { pitcherList.add(p); }
 
     public String getOpName() { return opName; }
     public String getLocation() { return location; }
@@ -37,4 +41,7 @@ public class Match {
     String location;
     String opName;
     String date;
+
+    List<Player> batterList;
+    List<Player> pitcherList;
 }

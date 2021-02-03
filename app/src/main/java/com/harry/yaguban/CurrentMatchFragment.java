@@ -15,6 +15,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.harry.yaguban.dummy.FragmentList;
+
 import java.util.Objects;
 
 public class CurrentMatchFragment extends Fragment implements View.OnClickListener {
@@ -22,7 +25,8 @@ public class CurrentMatchFragment extends Fragment implements View.OnClickListen
 
     Team team;
     Match match;
-    Button addMatch;
+    FloatingActionButton addMatch;
+    Button endMatch;
 
     TextView opName, location;
     TextView opScoreText, ourScoreText;
@@ -32,6 +36,7 @@ public class CurrentMatchFragment extends Fragment implements View.OnClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        match = MatchFileManager.loadMatch(getContext());
     }
 
     @Override
@@ -46,7 +51,7 @@ public class CurrentMatchFragment extends Fragment implements View.OnClickListen
 
         if (match == null) {
             View view = inflater.inflate(R.layout.fragment_no_match, container, false);
-            addMatch = view.findViewById(R.id.button_add_match);
+            addMatch = (FloatingActionButton) view.findViewById(R.id.button_add_match);
 
             addMatch.setOnClickListener(v -> {
                 if (team.getPlayerList().isEmpty()) {
@@ -66,15 +71,22 @@ public class CurrentMatchFragment extends Fragment implements View.OnClickListen
         location = view.findViewById(R.id.textView_match_location);
         opScoreText = view.findViewById(R.id.textView_op_score);
         ourScoreText = view.findViewById(R.id.textView_our_score);
-        plusOpScore = view.findViewById(R.id.button_op_score_plus);
-        minusOpScore = view.findViewById(R.id.button_op_score_minus);
-        plusOurScore = view.findViewById(R.id.button_our_score_plus);
-        minusOurScore = view.findViewById(R.id.button_our_score_minus);
+        endMatch = view.findViewById(R.id.button_end_match);
+        plusOpScore = (ImageButton) view.findViewById(R.id.button_op_score_plus);
+        minusOpScore = (ImageButton) view.findViewById(R.id.button_op_score_minus);
+        plusOurScore = (ImageButton) view.findViewById(R.id.button_our_score_plus);
+        minusOurScore = (ImageButton) view.findViewById(R.id.button_our_score_minus);
 
         opName.setText(match.getOpName());
         location.setText(match.getLocation());
-        opScoreText.setText("0");
-        ourScoreText.setText("0");
+        opScoreText.setText(String.valueOf(match.getOpScore()));
+        ourScoreText.setText(String.valueOf(match.getOurScore()));
+
+        plusOpScore.setOnClickListener(this);
+        minusOpScore.setOnClickListener(this);
+        plusOurScore.setOnClickListener(this);
+        minusOurScore.setOnClickListener(this);
+        endMatch.setOnClickListener(this);
 
         // Inflate the layout for this fragment
         return view;
@@ -118,6 +130,14 @@ public class CurrentMatchFragment extends Fragment implements View.OnClickListen
             plusOpScoreClicked();
         } else if (v.getId() == R.id.button_op_score_minus) {
             minusOpScoreClicked();
+        } else if (v.getId() == R.id.button_end_match) {
+            team.addMatchHistory(match);
+            TeamFileManager.saveTeam(getContext(), team);
+
+            MatchFileManager.deleteMatch(getContext());
+            Toast.makeText(getContext(), "경기가 저장되었습니다", Toast.LENGTH_SHORT).show();
+
+            mainActivity.refreshFragment(FragmentList.CURRENTMATCH);
         }
     }
 }
