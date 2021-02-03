@@ -157,6 +157,16 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 2);
     }
 
+    public void launchEnterPlayerPopup(boolean position) {
+        Intent intent = new Intent(this, EnterPlayerPopup.class);
+        intent.putExtra("isBatter", position);
+        startActivityForResult(intent, 3);
+    }
+
+    public void launchSetBatterPopup() {
+
+    }
+
     private void loadTeam() {
         ourTeam = TeamFileManager.loadTeam(this);
     }
@@ -196,6 +206,14 @@ public class MainActivity extends AppCompatActivity {
                 //ourTeam.getMatchHistory().add(curMatch);
 
                 refreshFragment(FragmentList.CURRENTMATCH);
+            }
+        }
+        else if (requestCode == 3) {
+            //Enter Player
+            if (resultCode == RESULT_OK && data != null) {
+                Player player = (Player) data.getSerializableExtra("newPlayer");
+                Toast.makeText(this, player.getPosition().toString(), Toast.LENGTH_SHORT).show();
+                refreshFragment(FragmentList.BATTERLIST);
             }
         }
     }

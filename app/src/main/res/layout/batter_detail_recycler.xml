@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginStart="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_width="match_parent"
+    android:layout_height="130dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/textView_player_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:text="김세영"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <TextView
+            android:id="@+id/textView_player_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="포수"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_player_name"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toTopOf="@+id/textView_player_name" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.78"
+            app:srcCompat="@drawable/more_icon" />
+
+        <Button
+            android:id="@+id/button_delete_player"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/delete_icon"
+            app:backgroundTint="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <TextView
+            android:id="@+id/textView_times_at_bat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="5 타수"
+            android:textSize="17sp"
+            android:textColor="@color/design_default_color_secondary_variant"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_times_at_bat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="3 안타"
+            android:textSize="17sp"
+            android:textColor="@color/design_default_color_secondary_variant"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            app:layout_constraintStart_toEndOf="@+id/textView_times_at_bat" />
+
+        <TextView
+            android:id="@+id/textView_batting_avg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="타율 0.600"
+            android:textSize="17sp"
+            android:textColor="@color/design_default_color_secondary_variant"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            app:layout_constraintStart_toStartOf="@+id/guideline9" />
+
+        <TextView
+            android:id="@+id/textView_strike_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="11sp"
+            android:text="2 삼진"
+            app:layout_constraintStart_toStartOf="@+id/textView_times_at_bat"
+            app:layout_constraintTop_toTopOf="@+id/guideline10" />
+
+        <TextView
+            android:id="@+id/textView_ball4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="2 볼넷"
+            android:textSize="11sp"
+            android:textColor="@color/design_default_color_error"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_strike_out"
+            app:layout_constraintStart_toEndOf="@+id/textView_strike_out"
+            app:layout_constraintTop_toTopOf="@+id/textView_strike_out" />
+
+        <TextView
+            android:id="@+id/textView_sacrifice_fly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="1 희생플라이"
+            android:textSize="11sp"
+            android:textColor="@color/win"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_ball4"
+            app:layout_constraintStart_toEndOf="@+id/textView_ball4"
+            app:layout_constraintTop_toTopOf="@+id/textView_ball4" />
+
+        <TextView
+            android:id="@+id/textView_base_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="출루율 0.500"
+            android:textSize="11sp"
+            android:textColor="@color/win"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_sacrifice_fly"
+            app:layout_constraintStart_toEndOf="@+id/textView_sacrifice_fly"
+            app:layout_constraintTop_toTopOf="@+id/textView_sacrifice_fly" />
+
+        <TextView
+            android:id="@+id/textView_slugging_avg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="장타율 0.567"
+            android:textSize="11sp"
+            android:textColor="@color/win"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_base_percentage"
+            app:layout_constraintStart_toEndOf="@+id/textView_base_percentage"
+            app:layout_constraintTop_toTopOf="@+id/textView_base_percentage" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

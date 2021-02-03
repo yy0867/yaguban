@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.harry.yaguban.dummy.FragmentList;
+
 import java.util.Objects;
 
 public class MatchListFragment extends Fragment {
@@ -45,6 +47,7 @@ public class MatchListFragment extends Fragment {
         matchListRecycler.setHasFixedSize(true);
 
         adapter = new MatchListAdapter(team);
+        adapter.setActivity((MainActivity)getActivity());
         matchListRecycler.setAdapter(adapter);
         matchListRecycler.setItemAnimator(new DefaultItemAnimator());
 

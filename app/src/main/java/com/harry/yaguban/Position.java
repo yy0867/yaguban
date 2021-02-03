@@ -62,6 +62,17 @@ public enum Position implements Serializable {
         return null;
     }
 
+    public static Position getPositionByName(String name) {
+        Position[] position = Position.values();
+
+        for (Position p : position) {
+            if (p.name.equals(name)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
     @NonNull
     @Override
     public String toString() {

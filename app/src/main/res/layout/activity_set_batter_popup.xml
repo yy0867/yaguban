@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="560dp"
+    tools:context=".SetBatterPopup">
+
+    <TextView
+        android:id="@+id/textView_player_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color"
+        android:fontFamily="@font/bccardlight"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="김세영"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="92dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/times_at_bat"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toBottomOf="@+id/textView_player_name" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/hit1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/strike_out"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/ball4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/sacrifice_fly"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="180dp" />
+
+    <TextView
+        android:id="@+id/textView_times_at_bat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+    <Button
+        android:id="@+id/button_minus_times_at_bat"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/minus_icon"
+        app:backgroundTint="@color/lose"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_times_at_bat"
+        app:layout_constraintEnd_toStartOf="@+id/textView_times_at_bat"
+        app:layout_constraintTop_toTopOf="@+id/textView_times_at_bat" />
+
+    <Button
+        android:id="@+id/button_plus_times_at_bat"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/plus_icon"
+        app:backgroundTint="@color/win"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_times_at_bat"
+        app:layout_constraintStart_toEndOf="@+id/textView_times_at_bat"
+        app:layout_constraintTop_toTopOf="@+id/textView_times_at_bat" />
+
+    <TextView
+        android:id="@+id/textView_hit1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+    <Button
+        android:id="@+id/button_minus_hit1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/minus_icon"
+        app:backgroundTint="@color/lose"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_hit1"
+        app:layout_constraintEnd_toStartOf="@+id/textView_hit1"
+        app:layout_constraintTop_toTopOf="@+id/textView_hit1" />
+
+    <Button
+        android:id="@+id/button_plus_hit1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/plus_icon"
+        app:backgroundTint="@color/win"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_hit1"
+        app:layout_constraintStart_toEndOf="@+id/textView_hit1"
+        app:layout_constraintTop_toTopOf="@+id/textView_hit1" />
+
+    <TextView
+        android:id="@+id/textView_strike_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+    <Button
+        android:id="@+id/button_minus_strike_out"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/minus_icon"
+        app:backgroundTint="@color/lose"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_strike_out"
+        app:layout_constraintEnd_toStartOf="@+id/textView_strike_out"
+        app:layout_constraintTop_toTopOf="@+id/textView_strike_out" />
+
+    <Button
+        android:id="@+id/button_plus_strike_out"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/plus_icon"
+        app:backgroundTint="@color/win"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_strike_out"
+        app:layout_constraintStart_toEndOf="@+id/textView_strike_out"
+        app:layout_constraintTop_toTopOf="@+id/textView_strike_out" />
+
+    <TextView
+        android:id="@+id/textView_ball4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+    <Button
+        android:id="@+id/button_minus_ball4"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/minus_icon"
+        app:backgroundTint="@color/lose"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_ball4"
+        app:layout_constraintEnd_toStartOf="@+id/textView_ball4"
+        app:layout_constraintTop_toTopOf="@+id/textView_ball4" />
+
+    <Button
+        android:id="@+id/button_plus_ball4"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/plus_icon"
+        app:backgroundTint="@color/win"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_ball4"
+        app:layout_constraintStart_toEndOf="@+id/textView_ball4"
+        app:layout_constraintTop_toTopOf="@+id/textView_ball4" />
+
+    <TextView
+        android:id="@+id/textView_sacrifice_fly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView12"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+    <Button
+        android:id="@+id/button_minus_sacrifice_fly"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/minus_icon"
+        app:backgroundTint="@color/lose"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_sacrifice_fly"
+        app:layout_constraintEnd_toStartOf="@+id/textView_sacrifice_fly"
+        app:layout_constraintTop_toTopOf="@+id/textView_sacrifice_fly" />
+
+    <Button
+        android:id="@+id/button_plus_sacrifice_fly"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/plus_icon"
+        app:backgroundTint="@color/win"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_sacrifice_fly"
+        app:layout_constraintStart_toEndOf="@+id/textView_sacrifice_fly"
+        app:layout_constraintTop_toTopOf="@+id/textView_sacrifice_fly" />
+
+    <TextView
+        android:id="@+id/textView_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="30dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/confirm"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:text="@string/cancel"
+        android:textColor="@color/gray"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_confirm"
+        app:layout_constraintEnd_toStartOf="@+id/textView_confirm"
+        app:layout_constraintTop_toTopOf="@+id/textView_confirm" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/hit2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView_hit2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView17"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+    <Button
+        android:id="@+id/button_minus_hit2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/minus_icon"
+        app:backgroundTint="@color/lose"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_hit2"
+        app:layout_constraintEnd_toStartOf="@+id/textView_hit2"
+        app:layout_constraintTop_toTopOf="@+id/textView_hit2" />
+
+    <Button
+        android:id="@+id/button_plus_hit2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/plus_icon"
+        app:backgroundTint="@color/win"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_hit2"
+        app:layout_constraintStart_toEndOf="@+id/textView_hit2"
+        app:layout_constraintTop_toTopOf="@+id/textView_hit2" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/hit3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView_hit3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView19"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+    <Button
+        android:id="@+id/button_minus_hit3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/minus_icon"
+        app:backgroundTint="@color/lose"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_hit3"
+        app:layout_constraintEnd_toStartOf="@+id/textView_hit3"
+        app:layout_constraintTop_toTopOf="@+id/textView_hit3" />
+
+    <Button
+        android:id="@+id/button_plus_hit3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/plus_icon"
+        app:backgroundTint="@color/win"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_hit3"
+        app:layout_constraintStart_toEndOf="@+id/textView_hit3"
+        app:layout_constraintTop_toTopOf="@+id/textView_hit3" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/homerun"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <TextView
+        android:id="@+id/textView_homerun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView21"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+    <Button
+        android:id="@+id/button_minus_homerun"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/minus_icon"
+        app:backgroundTint="@color/lose"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_homerun"
+        app:layout_constraintEnd_toStartOf="@+id/textView_homerun"
+        app:layout_constraintTop_toTopOf="@+id/textView_homerun" />
+
+    <Button
+        android:id="@+id/button_plus_homerun"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/plus_icon"
+        app:backgroundTint="@color/win"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_homerun"
+        app:layout_constraintStart_toEndOf="@+id/textView_homerun"
+        app:layout_constraintTop_toTopOf="@+id/textView_homerun" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

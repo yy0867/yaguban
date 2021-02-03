@@ -1,9 +1,11 @@
 package com.harry.yaguban;
 
 import android.os.Build;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,14 +14,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.harry.yaguban.dummy.FragmentList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.ViewHolder> {
 
-    List<Match> matchList = new ArrayList<>();
+    ArrayList<Match> matchList;
+    Button deleteButton;
+    MainActivity activity;
+    Team team;
 
     MatchListAdapter(Team team) {
         matchList = team.getMatchHistory();
@@ -51,7 +59,8 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
             opName.setText(match.getOpName());
             String scoreString = match.getOurScore() + " : " + match.getOpScore();
             score.setText(scoreString);
-            location.setText(match.getLocation());
+            String locationWithDate = match.getLocation() + "  " + match.getDate();
+            location.setText(locationWithDate);
 
             if (match.getOurScore() > match.getOpScore()) {
                 result.setText(itemView.getResources().getString(R.string.win));
@@ -64,6 +73,16 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
                 result.setTextColor(itemView.getResources().getColor(R.color.draw));
             }
         }
+
+        public void deleteItem(int position) {
+            team.getMatchHistory().remove(position);
+            TeamFileManager.saveTeam(itemView.getContext(), team);
+        }
+
+    }
+
+    public void setActivity(MainActivity activity) {
+        this.activity = activity;
     }
 
     @NonNull
@@ -71,6 +90,8 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
     public MatchListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.match_list_recycler, parent, false);
+        deleteButton = itemView.findViewById(R.id.button_delete_match);
+        team = TeamFileManager.loadTeam(itemView.getContext());
 
         return new MatchListAdapter.ViewHolder(itemView);
     }
@@ -78,7 +99,15 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
     @Override
     public void onBindViewHolder(@NonNull MatchListAdapter.ViewHolder holder, int position) {
         Match match = matchList.get(position);
+
         holder.setItem(match);
+
+        deleteButton.setOnClickListener(v -> {
+            holder.deleteItem(position);
+            notifyItemRemoved(position);
+            notifyDataSetChanged();
+            activity.refreshFragment(FragmentList.MATCHLIST);
+        });
     }
 
     @Override

@@ -33,8 +33,11 @@ public class Match {
 
     public String getOpName() { return opName; }
     public String getLocation() { return location; }
+    public String getDate() { return date; }
     public int getOurScore() { return ourScore; }
     public int getOpScore() { return opScore; }
+    public List<Player> getBatterList() { return batterList; }
+    public List<Player> getPitcherList() { return pitcherList; }
 
     boolean matchOngoing;
     int ourScore, opScore;

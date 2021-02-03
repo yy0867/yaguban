@@ -131,7 +131,7 @@ public class AddMatchPopupActivity extends Activity {
     }
 
     private void updateText() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.KOREA);
 
         date = dateFormat.format(calendar.getTime());
         matchDate.setText(date);

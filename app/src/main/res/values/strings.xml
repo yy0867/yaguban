@@ -31,6 +31,26 @@
     <string name="lose">lose</string>
     <string name="draw">draw</string>
 
+    <!-- Enter Player Popup Strings -->
+    <string name="choose_player">선수 선택</string>
+    <string name="choose_position">포지션 선택</string>
+    <string name="choose_player_hint">선수를 선택해주세요</string>
+    <string name="choose_position_hint">포지션을 선택해주세요</string>
+    <string name="add_player_complete">선수를 추가합니다!</string>
+
+    <!-- Set Batter Popup Strings -->
+    <string name="batter_title">타자 정보</string>
+    <string name="times_at_bat">타수</string>
+    <string name="hit1">안타</string>
+    <string name="hit2">2루타</string>
+    <string name="hit3">3루타</string>
+    <string name="homerun">홈런</string>
+    <string name="strike_out">삼진</string>
+    <string name="ball4">볼넷</string>
+    <string name="sacrifice_fly">희생플라이</string>
+    <string name="confirm"><u>확인</u></string>
+    <string name="cancel">취소</string>
+
     <!-- Add Player Popup Strings -->
     <string name="player_name_hint">이름을 입력해주세요</string>
 
