@@ -35,7 +35,7 @@ public class BatterListFragment extends Fragment {
         curMatch = MatchFileManager.loadMatch(getActivity());
         if (curMatch == null || curMatch.getOpName().isEmpty()) {
             view = inflater.inflate(R.layout.no_match_list_layout, container, false);
-            TextView text = view.findViewById(R.id.textView_no_match);
+            TextView text = view.findViewById(R.id.textView_no_current_match);
             text.setText("진행중인 경기가 없습니다.\n\n경기를 추가해주세요!");
         }
 
