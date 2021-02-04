@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -18,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class AddMatchPopupActivity extends Activity {
+public class AddMatchPopupActivity extends AppCompatActivity {
 
     EditText opTeamName;
     EditText matchLocation;
@@ -51,7 +53,7 @@ public class AddMatchPopupActivity extends Activity {
 
         opTeamName.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {manageButtonActivation(); }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -61,12 +63,12 @@ public class AddMatchPopupActivity extends Activity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) { }
+            public void afterTextChanged(Editable s) {manageButtonActivation(); }
         });
         matchLocation.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                manageButtonActivation();
             }
 
             @Override
@@ -78,7 +80,7 @@ public class AddMatchPopupActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                manageButtonActivation();
             }
         });
         matchDate.setOnClickListener(v -> {
@@ -92,42 +94,42 @@ public class AddMatchPopupActivity extends Activity {
     }
 
     public void addMatchClicked(View v) {
-        addMatchButton.setOnClickListener(a -> {
-            if (!(team.isEmpty() || location.isEmpty() || date.isEmpty())) {
-                Intent intent = new Intent();
+        Intent intent = new Intent();
 
-                intent.putExtra("team", team);
-                intent.putExtra("location", location);
-                intent.putExtra("date", date);
+        intent.putExtra("team", team);
+        intent.putExtra("location", location);
+        intent.putExtra("date", date);
 
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        });
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     private void manageButtonActivation() {
-        addMatchButton.setBackgroundColor(getResources().getColor(R.color.gray));
+        addMatchButton.setBackgroundColor(getResources().getColor(R.color.main_color));
         if (team.isEmpty()) {
+            addMatchButton.setBackgroundColor(getResources().getColor(R.color.gray));
             isFormComplete = false;
+            addMatchButton.setClickable(false);
             addMatchButton.setText(getResources().getString(R.string.team_name_hint));
-            return;
         }
         else if (location.isEmpty()) {
+            addMatchButton.setBackgroundColor(getResources().getColor(R.color.gray));
             isFormComplete = false;
+            addMatchButton.setClickable(false);
             addMatchButton.setText(getResources().getString(R.string.match_locate_hint));
-            return;
         }
         else if (date.isEmpty()) {
+            addMatchButton.setBackgroundColor(getResources().getColor(R.color.gray));
             isFormComplete = false;
+            addMatchButton.setClickable(false);
             addMatchButton.setText(getResources().getString(R.string.match_date_hint));
-            return;
+        } else {
+            isFormComplete = true;
+            addMatchButton.setClickable(true);
+            addMatchButton.setBackgroundColor(getResources().getColor(R.color.main_color));
+            addMatchButton.setTextColor(getResources().getColor(R.color.white));
+            addMatchButton.setText(getResources().getString(R.string.add_match_complete));
         }
-
-        isFormComplete = true;
-        addMatchButton.setBackgroundColor(getResources().getColor(R.color.main_color));
-        addMatchButton.setTextColor(getResources().getColor(R.color.white));
-        addMatchButton.setText(getResources().getString(R.string.add_match_complete));
     }
 
     private void updateText() {

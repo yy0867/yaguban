@@ -26,6 +26,8 @@ public class MatchFileManager {
         SharedPreferences pref = context.getSharedPreferences(matchRepository, Context.MODE_PRIVATE);
         String json = pref.getString("match", "");
 
+        //Match match = gson.fromJson(json, Match.class);
+
         return gson.fromJson(json, Match.class);
     }
 

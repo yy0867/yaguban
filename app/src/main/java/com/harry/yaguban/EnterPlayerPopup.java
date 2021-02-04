@@ -3,9 +3,11 @@ package com.harry.yaguban;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,7 +18,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnterPlayerPopup extends Activity {
+public class EnterPlayerPopup extends AppCompatActivity {
 
     Match match;
     Team team;
@@ -26,6 +28,7 @@ public class EnterPlayerPopup extends Activity {
     Position selectedPosition;
     Spinner choosePosition;
     ArrayAdapter<String> positionAdapter;
+    boolean isBatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +39,13 @@ public class EnterPlayerPopup extends Activity {
         team = TeamFileManager.loadTeam(this);
 
         Intent intent = getIntent();
-        boolean isBatter = intent.getBooleanExtra("isBatter", true);
+        isBatter = intent.getBooleanExtra("isBatter", true);
 
         Spinner choosePlayer = findViewById(R.id.spinner_choose_player);
         choosePosition = findViewById(R.id.spinner_choose_position);
 
         playerList = team.getPlayerString();
-        removeExistPlayer();
+        //removeExistPlayer();
         ArrayAdapter<String> playerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, playerList);
 
         playerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -92,9 +95,11 @@ public class EnterPlayerPopup extends Activity {
     private void fixPositionList() {
         int pos = positionList.indexOf(selectedPlayer.getPosition().toString());
 
-        String temp = positionList.get(pos);
-        positionList.remove(pos);
-        positionList.add(0, temp);
+        if (isBatter) {
+            String temp = positionList.get(pos);
+            positionList.remove(pos);
+            positionList.add(0, temp);
+        }
 
         positionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, positionList);
         positionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -114,6 +119,7 @@ public class EnterPlayerPopup extends Activity {
         Intent intent = new Intent();
 
         intent.putExtra("newPlayer", player);
+        intent.putExtra("isBatter", isBatter);
         setResult(RESULT_OK, intent);
 
         finish();

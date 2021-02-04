@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.harry.yaguban.dummy.FragmentList;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -163,8 +165,18 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 3);
     }
 
-    public void launchSetBatterPopup() {
+    public void launchSetBatterPopup(int position) {
+        Intent intent = new Intent(this, SetBatterPopup.class);
 
+        curMatch = MatchFileManager.loadMatch(this);
+
+        Player p = curMatch.getBatterList().get(position);
+        intent.putExtra("batter", p);
+        intent.putExtra("position", position);
+        startActivity(intent);
+
+        curMatch = MatchFileManager.loadMatch(this);
+        refreshFragment(FragmentList.BATTERLIST);
     }
 
     private void loadTeam() {
@@ -209,11 +221,19 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else if (requestCode == 3) {
-            //Enter Player
+            //Enter Batter
             if (resultCode == RESULT_OK && data != null) {
                 Player player = (Player) data.getSerializableExtra("newPlayer");
-                Toast.makeText(this, player.getPosition().toString(), Toast.LENGTH_SHORT).show();
-                refreshFragment(FragmentList.BATTERLIST);
+                boolean isBatter = data.getBooleanExtra("isBatter", true);
+                curMatch = MatchFileManager.loadMatch(this);
+
+                if (isBatter) curMatch.addBatter(player);
+                else curMatch.addPitcher(player);
+
+                MatchFileManager.saveMatch(this, curMatch);
+
+                if (isBatter) refreshFragment(FragmentList.BATTERLIST);
+                else refreshFragment(FragmentList.PITCHERLIST);
             }
         }
     }

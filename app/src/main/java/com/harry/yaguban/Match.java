@@ -2,6 +2,7 @@ package com.harry.yaguban;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Match {
@@ -45,6 +46,6 @@ public class Match {
     String opName;
     String date;
 
-    List<Player> batterList;
-    List<Player> pitcherList;
+    List<Player> batterList = new ArrayList<>();
+    List<Player> pitcherList = new ArrayList<>();
 }

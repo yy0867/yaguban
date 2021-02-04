@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,9 +52,9 @@ public class BatterListFragment extends Fragment {
         }
 
         activity = (MainActivity)getActivity();
-
         enterPlayerButton = (FloatingActionButton) view.findViewById(R.id.button_add_batter);
         enterPlayerButton.setOnClickListener(v -> {
+            curMatch = MatchFileManager.loadMatch(getActivity());
             activity.launchEnterPlayerPopup(true);
         });
 
@@ -64,21 +65,10 @@ public class BatterListFragment extends Fragment {
         batterListRecycler.scrollToPosition(0);
         batterListRecycler.setHasFixedSize(true);
 
-        adapter = new BatterListAdapter();
-
-
-        //        View view = inflater.inflate(R.layout.fragment_match_list, container, false);
-        //        matchListRecycler = view.findViewById(R.id.recyclerview_match_list);
-        //
-        //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        //        matchListRecycler.setLayoutManager(layoutManager);
-        //        matchListRecycler.scrollToPosition(0);
-        //        matchListRecycler.setHasFixedSize(true);
-        //
-        //        adapter = new MatchListAdapter(team);
-        //        adapter.setActivity((MainActivity)getActivity());
-        //        matchListRecycler.setAdapter(adapter);
-        //        matchListRecycler.setItemAnimator(new DefaultItemAnimator());
+        adapter = new BatterListAdapter(curMatch);
+        adapter.setActivity((MainActivity) getActivity());
+        batterListRecycler.setAdapter(adapter);
+        batterListRecycler.setItemAnimator(new DefaultItemAnimator());
 
         return view;
     }
