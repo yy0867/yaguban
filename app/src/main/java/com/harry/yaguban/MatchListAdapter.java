@@ -36,6 +36,7 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
     static class ViewHolder extends RecyclerView.ViewHolder {
         Team team;
         TextView opName, score, location, result;
+        MainActivity activity;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -48,8 +49,7 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
             itemView.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    //Show Match Info
-                    Toast.makeText(itemView.getContext(), team.getMatchHistory().get(position).getOpName(), Toast.LENGTH_SHORT).show();
+                    activity.launchMatchRecordPopup(team.getMatchHistory().get(getAdapterPosition()));
                 }
             });
         }
@@ -79,6 +79,7 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
             TeamFileManager.saveTeam(itemView.getContext(), team);
         }
 
+        public void setActivity(MainActivity activity) { this.activity = activity; }
     }
 
     public void setActivity(MainActivity activity) {
@@ -101,6 +102,7 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
         Match match = matchList.get(position);
 
         holder.setItem(match);
+        holder.setActivity(activity);
 
         deleteButton.setOnClickListener(v -> {
             holder.deleteItem(position);

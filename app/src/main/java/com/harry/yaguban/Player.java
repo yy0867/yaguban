@@ -64,7 +64,19 @@ public class Player implements Serializable {
         if (innings - (int) innings > 0.29) innings += 0.7;
         calcERA();
     }
-    public void calcERA() { era = (innings == 0) ? 0 : losePoint*9 / innings; }
+    public void calcERA() {
+        //era = (innings == 0) ? 0 : losePoint*9 / innings;
+        double calcInnings = 1;
+        if (innings == 0) {
+            era = 0;
+            return;
+        } else if (Math.round(innings * 10) % 10 == 1) {
+            calcInnings = (int) innings + (1 / 3.0);
+        } else if (Math.round(innings * 10) % 10 == 2) {
+            calcInnings = (int) innings + (2 / 3.0);
+        }
+        era = losePoint * 9 / calcInnings;
+    }
 
     public void decreaseStrikeCount() { if (strikeCount != 0) strikeCount--; }
     public void decreaseBall4Count() { if (ball4Count != 0) ball4Count--; }

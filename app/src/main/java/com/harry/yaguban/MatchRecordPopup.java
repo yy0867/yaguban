@@ -1,7 +1,9 @@
 package com.harry.yaguban;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -13,10 +15,8 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MatchRecordPopup extends AppCompatActivity {
 
-    TabItem batterTab, pitcherTab;
-    BatterListAdapter batterAdapter;
-    PitcherListAdapter pitcherAdapter;
-    RecyclerView batterRecycler, pitcherRecycler;
+    Fragment fragmentBatterRecord;
+    Fragment fragmentPitcherRecord;
     Match curMatch;
 
     @Override
@@ -27,13 +27,11 @@ public class MatchRecordPopup extends AppCompatActivity {
         Intent intent = getIntent();
         curMatch = (Match) intent.getSerializableExtra("match");
 
+        fragmentBatterRecord = new BatterRecordFragment(curMatch);
+        fragmentPitcherRecord = new PitcherRecordFragment(curMatch);
+        changeView(0);
+
         TabLayout layout = findViewById(R.id.layout_batter_pitcher_info);
-        batterTab = findViewById(R.id.tabItem_batter);
-        pitcherTab = findViewById(R.id.tabItem_pitcher);
-
-        batterRecycler = findViewById(R.id.recycler_batter_info);
-        pitcherRecycler = findViewById(R.id.recycler_pitcher_info);
-
 
         layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -51,21 +49,13 @@ public class MatchRecordPopup extends AppCompatActivity {
 
     private void changeView(int pos) {
         if (pos == 0) {
-            batterTab.setVisibility(View.VISIBLE);
-            pitcherTab.setVisibility(View.INVISIBLE);
-
-            batterAdapter = new BatterListAdapter(curMatch);
-            batterAdapter.setActivity((MainActivity) getApplicationContext());
-            batterAdapter.setClickable(false);
-            batterRecycler.setAdapter(batterAdapter);
-            batterRecycler.setItemAnimator(new DefaultItemAnimator());
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.layout_record_fragment_container, fragmentBatterRecord)
+                    .commit();
         } else if (pos == 1) {
-            batterTab.setVisibility(View.INVISIBLE);
-            pitcherTab.setVisibility(View.VISIBLE);
-
-            pitcherAdapter = new PitcherListAdapter(curMatch);
-            pitcherAdapter.setActivity((MainActivity) getApplicationContext());
-            //set all buttons invisible (within pitcherListAdapter);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.layout_record_fragment_container, fragmentPitcherRecord)
+                    .commit();
         }
     }
 }

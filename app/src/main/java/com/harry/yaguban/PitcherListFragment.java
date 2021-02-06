@@ -62,6 +62,7 @@ public class PitcherListFragment extends Fragment {
 
         PitcherListAdapter adapter = new PitcherListAdapter(curMatch);
         adapter.setActivity((MainActivity) getActivity());
+        adapter.setVisibility(true);
         pitcherListRecycler.setAdapter(adapter);
         pitcherListRecycler.setItemAnimator(new DefaultItemAnimator());
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:orientation="vertical"
     tools:context=".MatchRecordPopup">
 
     <com.google.android.material.tabs.TabLayout
@@ -17,40 +17,23 @@
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabItem_batter"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:icon="@drawable/batter_icon"
             android:text="@string/batter" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabItem_pitcher"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:icon="@drawable/pitcher_icon"
             android:text="@string/pitcher"/>
     </com.google.android.material.tabs.TabLayout>
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/layout_record_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_batter_pitcher_info">
+        android:layout_height="match_parent"
+        android:orientation="vertical"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_batter_info"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="visible" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_pitcher_info"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible" />
-
-
-    </FrameLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

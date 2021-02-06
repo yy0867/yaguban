@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ public class BatterListAdapter extends RecyclerView.Adapter<BatterListAdapter.Vi
     Match curMatch;
     Button deleteButton;
     MainActivity activity;
+    ImageView arrow;
     boolean isClickable = true;
 
     BatterListAdapter(Match match) {
@@ -109,6 +111,7 @@ public class BatterListAdapter extends RecyclerView.Adapter<BatterListAdapter.Vi
         View itemView = inflater.inflate(R.layout.batter_detail_recycler, parent, false);
         curMatch = MatchFileManager.loadMatch(itemView.getContext());
         deleteButton = itemView.findViewById(R.id.button_delete_player);
+        arrow = itemView.findViewById(R.id.imageView_arrow);
 
         return new BatterListAdapter.ViewHolder(itemView);
     }
@@ -117,14 +120,22 @@ public class BatterListAdapter extends RecyclerView.Adapter<BatterListAdapter.Vi
     public void onBindViewHolder(@NonNull BatterListAdapter.ViewHolder holder, int position) {
         Player p = batterList.get(position);
         holder.setTexts(p);
-        holder.setActivity(activity);
         holder.setClickable(isClickable);
+        if (isClickable) {
+            holder.setActivity(activity);
+            deleteButton.setVisibility(View.VISIBLE);
+        } else {
+            deleteButton.setVisibility(View.INVISIBLE);
+            arrow.setVisibility(View.INVISIBLE);
+        }
 
         deleteButton.setOnClickListener(v -> {
-            holder.deleteItem(position);
-            notifyItemRemoved(position);
-            notifyDataSetChanged();
-            activity.refreshFragment(FragmentList.BATTERLIST);
+            if (isClickable) {
+                holder.deleteItem(position);
+                notifyItemRemoved(position);
+                notifyDataSetChanged();
+                activity.refreshFragment(FragmentList.BATTERLIST);
+            }
         });
     }
 

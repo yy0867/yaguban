@@ -28,6 +28,7 @@ public class PitcherListAdapter extends RecyclerView.Adapter<PitcherListAdapter.
     Button minusLosePoint, plusLosePoint;
     Button minusInnnings, plusInnnings;
     Button minusPitchCount, plusPitchCount;
+    boolean isVisible;
 
     PitcherListAdapter(Match match) { pitcherList = match.getPitcherList(); }
 
@@ -78,6 +79,25 @@ public class PitcherListAdapter extends RecyclerView.Adapter<PitcherListAdapter.
 
     public void setActivity(MainActivity activity) { this.activity = activity; }
 
+    public void setVisibility(boolean isVisible) { this.isVisible = isVisible; }
+
+    public void setVisible() {
+        int visibility = isVisible ? View.VISIBLE : View.INVISIBLE;
+        plusStrikeOut.setVisibility(visibility);
+        minusStrikeOut.setVisibility(visibility);
+        plusBall4.setVisibility(visibility);
+        minusBall4.setVisibility(visibility);
+        plusHitted.setVisibility(visibility);
+        minusHitted.setVisibility(visibility);
+        plusLosePoint.setVisibility(visibility);
+        minusLosePoint.setVisibility(visibility);
+        plusInnnings.setVisibility(visibility);
+        minusInnnings.setVisibility(visibility);
+        plusPitchCount.setVisibility(visibility);
+        minusPitchCount.setVisibility(visibility);
+        deleteButton.setVisibility(visibility);
+    }
+
     @NonNull
     @Override
     public PitcherListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -100,91 +120,93 @@ public class PitcherListAdapter extends RecyclerView.Adapter<PitcherListAdapter.
         plusPitchCount = itemView.findViewById(R.id.button_plus_pitchcount);
         minusPitchCount = itemView.findViewById(R.id.button_minus_pitchcount);
 
+        setVisible();
+
         return new PitcherListAdapter.ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PitcherListAdapter.ViewHolder holder, int position) {
-        holder.setActivity(activity);
+        if (isVisible) holder.setActivity(activity);
         holder.setTexts(pitcherList.get(position));
 
         deleteButton.setOnClickListener(v -> {
             holder.deleteItem(position);
             notifyItemRemoved(position);
             notifyDataSetChanged();
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         minusStrikeOut.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).decreaseStrikeCount();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         plusStrikeOut.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).increaseStrikeCount();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         minusBall4.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).decreaseBall4Count();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         plusBall4.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).increaseBall4Count();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         minusHitted.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).decreaseHittedCount();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         plusHitted.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).increaseHittedCount();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         minusLosePoint.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).decreaseLosePoint();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         plusLosePoint.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).increaseLosePoint();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         minusInnnings.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).decreaseInnings();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         plusInnnings.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).increaseInnings();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         minusPitchCount.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).decreasePitchCount();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
         plusPitchCount.setOnClickListener(v -> {
             curMatch.getPitcherList().get(position).increasePitchCount();
             notifyItemChanged(position);
             MatchFileManager.saveMatch(holder.itemView.getContext(), curMatch);
-            activity.refreshFragment(FragmentList.PITCHERLIST);
+            if (isVisible) activity.refreshFragment(FragmentList.PITCHERLIST);
         });
     }
 
