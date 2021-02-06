@@ -27,6 +27,8 @@ public class MatchRecordPopup extends AppCompatActivity {
         Intent intent = getIntent();
         curMatch = (Match) intent.getSerializableExtra("match");
 
+        setTitle(curMatch.getOpName());
+
         fragmentBatterRecord = new BatterRecordFragment(curMatch);
         fragmentPitcherRecord = new PitcherRecordFragment(curMatch);
         changeView(0);
