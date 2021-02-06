@@ -22,6 +22,7 @@ public class BatterListAdapter extends RecyclerView.Adapter<BatterListAdapter.Vi
     Match curMatch;
     Button deleteButton;
     MainActivity activity;
+    boolean isClickable = true;
 
     BatterListAdapter(Match match) {
         batterList = match.getBatterList();
@@ -84,6 +85,10 @@ public class BatterListAdapter extends RecyclerView.Adapter<BatterListAdapter.Vi
             sluggingAvg.setText(text);
         }
 
+        public void setClickable(boolean isClickable) {
+            itemView.setClickable(isClickable);
+        }
+
         public void deleteItem(int position) {
             if (curMatch.getBatterList().size() == 0) return;
             curMatch.getBatterList().remove(position);
@@ -94,6 +99,8 @@ public class BatterListAdapter extends RecyclerView.Adapter<BatterListAdapter.Vi
     public void setActivity(MainActivity activity) {
         this.activity = activity;
     }
+
+    public void setClickable(boolean isClickable) { this.isClickable = isClickable; }
 
     @NonNull
     @Override
@@ -111,6 +118,7 @@ public class BatterListAdapter extends RecyclerView.Adapter<BatterListAdapter.Vi
         Player p = batterList.get(position);
         holder.setTexts(p);
         holder.setActivity(activity);
+        holder.setClickable(isClickable);
 
         deleteButton.setOnClickListener(v -> {
             holder.deleteItem(position);

@@ -179,6 +179,13 @@ public class MainActivity extends AppCompatActivity {
         refreshFragment(FragmentList.BATTERLIST);
     }
 
+    public void launchMatchRecordPopup(Match selectedMatch) {
+        Intent intent = new Intent(this, MatchRecordPopup.class);
+
+        intent.putExtra("match", selectedMatch);
+        startActivity(intent);
+    }
+
     private void loadTeam() {
         ourTeam = TeamFileManager.loadTeam(this);
     }

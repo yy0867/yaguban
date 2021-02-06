@@ -67,6 +67,7 @@ public class BatterListFragment extends Fragment {
 
         adapter = new BatterListAdapter(curMatch);
         adapter.setActivity((MainActivity) getActivity());
+        adapter.setClickable(true);
         batterListRecycler.setAdapter(adapter);
         batterListRecycler.setItemAnimator(new DefaultItemAnimator());
 

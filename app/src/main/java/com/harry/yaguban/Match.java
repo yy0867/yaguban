@@ -2,10 +2,11 @@ package com.harry.yaguban;
 
 import android.content.Context;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Match {
+public class Match implements Serializable {
     public Match(Context context) {
         ourScore = opScore = 0;
         opName = "";
